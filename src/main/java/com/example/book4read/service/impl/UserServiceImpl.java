@@ -3,12 +3,10 @@ package com.example.book4read.service.impl;
 import com.example.book4read.model.User;
 import com.example.book4read.repository.UserRepository;
 import com.example.book4read.service.UserService;
-import com.sun.istack.Nullable;
 import lombok.extern.log4j.Log4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import javax.security.auth.login.AccountNotFoundException;
 import java.util.List;
 
 @Log4j
@@ -59,7 +57,7 @@ public class UserServiceImpl implements UserService {
     public User getUser(String email) {
         if (userRepo.existsByEmail(email)) {
             log.info("Get user with email:" + email);
-            return userRepo.getByEmail(email);
+            return userRepo.findByEmail(email);
         } else {
             log.error("Try to get user with email:" + email);
             // TODO:: return to ACCOUNT NOT FOUND EXCEPTION

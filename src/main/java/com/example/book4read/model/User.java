@@ -1,5 +1,6 @@
 package com.example.book4read.model;
 
+import com.example.book4read.model.util.Role;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -20,10 +21,13 @@ public class User {
     @GenericGenerator(name = "uuid", strategy = "uuid2")
     private String id;
 
-    @Column(name = "email", nullable = false)
+    @Column(name = "role")
+    private Role role;
+
+    @Column(name = "email")
     private String email;
 
-    @Column(name = "password", nullable = false)
+    @Column(name = "password")
     private String password;
 
     @Column(name = "first_name")
@@ -32,4 +36,6 @@ public class User {
     @Column(name = "last_name")
     private String last_name;
 
+    @Column(name = "phone_number")
+    private String phoneNumber;
 }
