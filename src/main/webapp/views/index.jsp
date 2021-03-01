@@ -12,7 +12,7 @@
     <title>Book4Read</title>
 
     <!-- Favicon  -->
-    <link rel="icon" href="../resources/icon/icon.png">
+    <link rel="icon" href="../resources/img/icon.png">
 
     <!-- Core Style CSS -->
     <link rel="stylesheet" href="../resources/css/core-style.css">

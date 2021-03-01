@@ -1,7 +1,6 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ taglib prefix="forms" uri="http://www.springframework.org/tags/form" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -41,40 +40,66 @@
                     <div class="checkout_details_area mt-50 clearfix">
 
                         <div class="cart-title">
-                            <h2>Sign in</h2>
+                            <h2>Registration</h2>
                         </div>
 
-                        <form:form method="post" action="/login">
-                            <div class="row ${error != null ? 'has-error' : ''}">
+                        <form:form method="POST" modelAttribute="userForm" class="form-signin">
+                            <div class="row">
 
-                                <div class="col-12 mb-3">
-                                    <span>${message}</span>
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <input name="username" type="email" class="form-control" id="email" placeholder="Email"/>
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <input name="password" type="password" class="form-control" id="password" placeholder="Password"/>
-                                </div>
+                                <spring:bind path="email">
+                                    <div class="form-group col-12 mb-3 ${status.error ? 'has-error' : ''}">
+                                        <form:input type="email" path="email" class="form-control" placeholder="Email" autofocus="true"/>
+                                        <form:errors path="email"/>
+                                    </div>
+                                </spring:bind>
 
-                                <div class="col-12 mb-3">
-                                    <span>${error}</span>
-                                </div>
+                                <spring:bind path="password">
+                                    <div class="form-group col-12 mb-3 ${status.error ? 'has-error' : ''}">
+                                        <form:input type="password" path="password" class="form-control" placeholder="Password"/>
+                                        <form:errors path="password"/>
+                                    </div>
+                                </spring:bind>
+
+                                <spring:bind path="firstName">
+                                    <div class="form-group col-12 mb-3 ${status.error ? 'has-error' : ''}">
+                                        <form:input type="text" path="firstName" class="form-control" placeholder="First name"/>
+                                        <form:errors path="firstName"/>
+                                    </div>
+                                </spring:bind>
+
+                                <spring:bind path="lastName">
+                                    <div class="form-group col-12 mb-3 ${status.error ? 'has-error' : ''}">
+                                        <form:input type="text" path="lastName" class="form-control" placeholder="Last name"/>
+                                        <form:errors path="lastName"/>
+                                    </div>
+                                </spring:bind>
+
+                                <spring:bind path="birthday">
+                                    <div class="form-group col-md-6 mb-3 ${status.error ? 'has-error' : ''}">
+                                        <form:input type="date" path="birthday" class="form-control" placeholder="Date"/>
+                                        <form:errors path="birthday"/>
+                                    </div>
+                                </spring:bind>
+
+                                <spring:bind path="phone">
+                                    <div class="form-group col-md-6 mb-3 ${status.error ? 'has-error' : ''}">
+                                        <form:input type="number" path="phone" maxlength="10" class="form-control" placeholder="Phone number"/>
+                                        <form:errors path="phone"/>
+                                    </div>
+                                </spring:bind>
 
                                 <div class="col-4 mb-3">
-                                    <input class="btn amado-btn mb-15" type="submit" value="Log in"/>
+                                    <input class="btn amado-btn mb-15" type="submit" value="Submit"/>
                                 </div>
                                 <div class="col-4 mb-3">
-                                    <a href="/registration" class="btn amado-btn mb-15" type="button">Sign up</a>
+                                    <a href="/login" class="btn amado-btn mb-15" type="button">Log in</a>
                                 </div>
-
                             </div>
                         </form:form>
 
 
                     </div>
                 </div>
-
 <%--                <div class="col-12 col-lg-4">--%>
 <%--                    <div class="cart-summary">--%>
 <%--                        <h5>Cart Total</h5>--%>

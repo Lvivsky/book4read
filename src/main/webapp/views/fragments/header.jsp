@@ -1,4 +1,5 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 <!-- Header Area Start -->
 <header class="header-area clearfix">
@@ -8,16 +9,31 @@
     </div>
     <!-- Logo -->
     <div class="logo">
-        <a href="index.html"><img src="img/core-img/logo.png" alt=""></a>
+        <a href="/shelf"><img src="../../resources/img/icon.png" alt=""></a>
     </div>
     <!-- Amado Nav -->
     <nav class="amado-nav">
         <ul>
+            <li>
+                <c:choose>
+                    <c:when test="${!empty pageContext.request.userPrincipal.name}">
+                        <a href="#">${pageContext.request.userPrincipal.name}</a>
+                    </c:when>
+                    <c:when test="${empty pageContext.request.userPrincipal.name}">
+                        <a href="/login">Sign in</a>
+                    </c:when>
+                </c:choose>
+            </li>
             <li><a href="/shelf">Shelf</a></li>
             <li><a href="#">Shop</a></li>
             <li><a href="#">Product</a></li>
-            <li><a href="#">Cart</a></li>
-            <li><a href="/login">Log in</a></li>
+
+            <c:if test="${!empty pageContext.request.userPrincipal.name}">
+                <form id="logoutForm" method="POST" action="/logout">
+                    <input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+                </form>
+                <li><a style="cursor:pointer" onclick="document.forms['logoutForm'].submit()">Log out</a></li>
+            </c:if>
         </ul>
     </nav>
     <!-- Button Group -->

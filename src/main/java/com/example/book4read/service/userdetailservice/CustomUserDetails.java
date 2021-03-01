@@ -25,13 +25,13 @@ public class CustomUserDetails extends User implements UserDetails {
     }
 
     @Override
-    public String getPassword() {
-        return this.user.getPassword();
+    public String getUsername() {
+        return this.user.getEmail();
     }
 
     @Override
-    public String getUsername() {
-        return this.user.getEmail();
+    public String getPassword() {
+        return this.user.getPassword();
     }
 
     @Override
