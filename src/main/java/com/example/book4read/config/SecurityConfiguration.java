@@ -32,16 +32,24 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/admin**").hasAuthority(Role.ADMIN.name())
-                .antMatchers("/resources/**", "/registration", "/login", "/sign-up", "/shelf", "/").permitAll()
-                .antMatchers("/library","/account**","/published","/create-book")
-                .hasAnyAuthority(Role.ADMIN.name(),Role.USER.name())
-                .anyRequest().authenticated()
+                .antMatchers("/admin**","/admin/**")
+                    .hasAuthority(Role.ADMIN.name())
+                .antMatchers("/resources/**", "/registration", "/login", "/shelf", "/","/my-profile")
+                    .permitAll()
+                .antMatchers("/account**","/published","/create-book")
+                    .hasAnyAuthority(Role.ADMIN.name(),Role.USER.name())
+                .anyRequest()
+                    .authenticated()
                 .and()
-                .formLogin().loginPage("/login").defaultSuccessUrl("/shelf", true)
+                    .formLogin()
+                    .loginPage("/login")
+                    .defaultSuccessUrl("/shelf", true)
+                    .failureUrl("/login?error")
                 .and()
-                .logout().deleteCookies("JSESSIONID")
+                    .logout()
+                    .deleteCookies("JSESSIONID")
                 .and()
-                .exceptionHandling().accessDeniedPage("/access-denied");
+                    .exceptionHandling()
+                    .accessDeniedPage("/access-denied");
     }
 }

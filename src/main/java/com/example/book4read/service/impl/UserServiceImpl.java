@@ -9,12 +9,14 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Log4j
 @Service
 public class UserServiceImpl implements UserService {
+
+    private final int PASSWORD_MAX = 32;
+    private final int PASSWORD_MIN = 8;
 
     private final UserRepository userRepo;
     private final PasswordEncoder passwordEncoder;
@@ -29,18 +31,26 @@ public class UserServiceImpl implements UserService {
     public void save(User user) {
         if (!userRepo.existsByEmail(user.getEmail())) {
 
-            user.setRole(Role.USER);
+            Set<Role> roles = new HashSet<>();
+            roles.add(Role.USER);
+//            roles.add(Role.ADMIN);
+            user.setRole(roles);
             user.setPassword(passwordEncoder.encode(user.getPassword()));
             user.setRegistrationTime(new Date(System.currentTimeMillis()));
+            user.setBlocked(false);
+
             userRepo.save(user);
 
-            log.info("Create user with id:" + user.getId() + " Email:" + user.getEmail());
-        } else {
-            log.error("User with email:" + user.getEmail() + " is already exist!");
+            log.info("Created new USER {id: "+user.getId()+", Email: "+user.getEmail()+"}");
+        } else if (user.getPassword().length() < PASSWORD_MIN || user.getPassword().length() > PASSWORD_MAX) {
+            log.error("Password is not valid!");
+        }
+        else {
+            log.error("Email: "+user.getEmail()+" is already exist!");
         }
     }
 
-    // TODO:: This option
+            // TODO:: This option
     @Override
     public void edit(String id, User newUser) {
         log.info("try to edit income id:" + id + " save user: " + newUser.toString());
@@ -74,14 +84,28 @@ public class UserServiceImpl implements UserService {
         }
     }
 
+    @Override
+    public User findUserById(String id) {
+        log.info("Getting user by id:" + id);
+        try {
+            User user = userRepo.findUserById(id);
+            log.info("User:" + user.getEmail());
+            return user;
+        } catch (Exception e) {
+            log.error("User not found! " + e.getMessage());
+            e.printStackTrace();
+            return new User();
+        }
+    }
+
     // TODO:: not sure about this
     @Override
     public boolean isExistByEmail(String email) {
-        return false;
+        return userRepo.existsByEmail(email);
     }
 
     @Override
     public boolean isExistById(String id) {
-        return false;
+        return userRepo.existsById(id);
     }
 }

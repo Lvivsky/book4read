@@ -16,12 +16,11 @@
     <!-- Amado Nav -->
     <nav class="amado-nav">
         <ul>
-            <c:if test="${pageContext.request.userPrincipal.name.equals('igor.lvivsky@gmail.com')}">
-                <li><a href="/admin">Admin</a></li>
-            </c:if>
-            <li><a href="/shelf">Shelf</a></li>
-            <li><a href="#">Shop</a></li>
-            <li><a href="#">Product</a></li>
+            <li><a href="/shelf"><i class="fa fa-arrow-left" aria-hidden="true"></i> Back to site</a></li>
+            <li><a href="/admin/statistic"><i class="fa fa-list-ul" aria-hidden="true"></i> Statistic</a></li>
+            <li><a href="/admin/users"><i class="fa fa-users" aria-hidden="true"></i> Users</a></li>
+            <li><a href="/admin/#">Categories</a></li>
+
         </ul>
     </nav>
     <!-- Button Group -->
@@ -41,9 +40,10 @@
     </div>
     <!-- Cart Menu -->
     <div class="cart-fav-search mb-100">
-        <a href="cart.html" class="cart-nav"><img src="img/core-img/cart.png" alt=""> Cart <span>(0)</span></a>
+        <a href="cart.html" class="cart-nav">
+            <img src="img/core-img/cart.png" alt=""> Cart <span>(0)</span>
+        </a>
         <a href="#" class="fav-nav"><img src="img/core-img/favorites.png" alt=""> Favourite</a>
-        <a href="#" class="search-nav"><img src="img/core-img/search.png" alt=""> Search</a>
     </div>
     <!-- Social Button -->
     <div class="social-info d-flex justify-content-between">

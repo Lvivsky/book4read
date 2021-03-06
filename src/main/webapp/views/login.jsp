@@ -51,17 +51,17 @@
                                     <span>${message}</span>
                                 </div>
                                 <div class="col-12 mb-3">
-                                    <input name="username" type="email" class="form-control" id="email" placeholder="Email"/>
+                                    <input required name="username" type="email" class="form-control" id="email" placeholder="Email"/>
                                 </div>
                                 <div class="col-12 mb-3">
-                                    <input name="password" type="password" class="form-control" id="password" placeholder="Password"/>
+                                    <input required name="password" type="password" class="form-control" id="password" placeholder="Password"/>
                                 </div>
 
                                 <div class="col-12 mb-3">
                                     <span>${error}</span>
                                 </div>
 
-                                <div class="col-4 mb-3">
+                                <div class="col-8 mb-3">
                                     <input class="btn amado-btn mb-15" type="submit" value="Log in"/>
                                 </div>
                                 <div class="col-4 mb-3">

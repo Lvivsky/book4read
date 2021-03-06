@@ -13,6 +13,7 @@ public interface UserService {
     List<User> findAll();
 
     User findUser(String email);
+    User findUserById(String id);
 
     boolean isExistByEmail(String email);
     boolean isExistById(String id);

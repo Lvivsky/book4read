@@ -48,21 +48,21 @@
 
                                 <spring:bind path="email">
                                     <div class="form-group col-12 mb-3 ${status.error ? 'has-error' : ''}">
-                                        <form:input type="email" path="email" class="form-control" placeholder="Email" autofocus="true"/>
+                                        <form:input required="true" type="email" path="email" class="form-control" placeholder="Email" autofocus="true"/>
                                         <form:errors path="email"/>
                                     </div>
                                 </spring:bind>
 
                                 <spring:bind path="password">
                                     <div class="form-group col-12 mb-3 ${status.error ? 'has-error' : ''}">
-                                        <form:input type="password" path="password" class="form-control" placeholder="Password"/>
+                                        <form:input required="true" type="password" path="password" class="form-control" placeholder="Password"/>
                                         <form:errors path="password"/>
                                     </div>
                                 </spring:bind>
 
                                 <spring:bind path="firstName">
                                     <div class="form-group col-12 mb-3 ${status.error ? 'has-error' : ''}">
-                                        <form:input type="text" path="firstName" class="form-control" placeholder="First name"/>
+                                        <form:input required="true" type="text" path="firstName" class="form-control" placeholder="First name"/>
                                         <form:errors path="firstName"/>
                                     </div>
                                 </spring:bind>
@@ -76,7 +76,7 @@
 
                                 <spring:bind path="birthday">
                                     <div class="form-group col-md-6 mb-3 ${status.error ? 'has-error' : ''}">
-                                        <form:input type="date" path="birthday" class="form-control" placeholder="Date"/>
+                                        <form:input required="true" type="date" path="birthday" class="form-control" placeholder="Date"/>
                                         <form:errors path="birthday"/>
                                     </div>
                                 </spring:bind>

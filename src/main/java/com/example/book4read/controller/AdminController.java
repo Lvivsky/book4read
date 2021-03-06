@@ -11,4 +11,19 @@ public class AdminController {
         return "access-denied";
     }
 
+    @GetMapping("/admin")
+    public String admin() {
+        return "admin/admin";
+    }
+
+    @GetMapping("/admin/statistic")
+    public String adminStatistic() {
+        return "admin/admin-statistic";
+    }
+
+    @GetMapping("/admin/users")
+    public String adminUsers() {
+        return "admin/admin-users";
+    }
+
 }

@@ -33,6 +33,6 @@ public class CustomUserDetailService implements UserDetailsService {
             log.info("Authorization user by email: " + username);
             return new CustomUserDetails(user);
         }
-
     }
+
 }
