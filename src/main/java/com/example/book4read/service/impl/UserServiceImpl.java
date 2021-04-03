@@ -2,6 +2,7 @@ package com.example.book4read.service.impl;
 
 import com.example.book4read.model.User;
 import com.example.book4read.model.util.Role;
+import com.example.book4read.model.util.Settings;
 import com.example.book4read.repository.UserRepository;
 import com.example.book4read.service.UserService;
 import lombok.extern.log4j.Log4j;
@@ -9,14 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import javax.security.auth.login.AccountNotFoundException;
 import java.util.*;
 
 @Log4j
 @Service
 public class UserServiceImpl implements UserService {
-
-    private final int PASSWORD_MAX = 32;
-    private final int PASSWORD_MIN = 8;
 
     private final UserRepository userRepo;
     private final PasswordEncoder passwordEncoder;
@@ -31,29 +30,39 @@ public class UserServiceImpl implements UserService {
     public void save(User user) {
         if (!userRepo.existsByEmail(user.getEmail())) {
 
-            Set<Role> roles = new HashSet<>();
-            roles.add(Role.USER);
-//            roles.add(Role.ADMIN);
-            user.setRole(roles);
             user.setPassword(passwordEncoder.encode(user.getPassword()));
-            user.setRegistrationTime(new Date(System.currentTimeMillis()));
-            user.setBlocked(false);
 
             userRepo.save(user);
 
             log.info("Created new USER {id: "+user.getId()+", Email: "+user.getEmail()+"}");
-        } else if (user.getPassword().length() < PASSWORD_MIN || user.getPassword().length() > PASSWORD_MAX) {
-            log.error("Password is not valid!");
         }
         else {
             log.error("Email: "+user.getEmail()+" is already exist!");
         }
     }
 
-            // TODO:: This option
     @Override
-    public void edit(String id, User newUser) {
-        log.info("try to edit income id:" + id + " save user: " + newUser.toString());
+    public void edit(User currentUser, User user) {
+
+        if (!user.getFirstName().isEmpty())
+            currentUser.setFirstName(user.getFirstName());
+        if (!user.getLastName().isEmpty())
+            currentUser.setLastName(user.getLastName());
+        if (user.getBirthday() != null)
+            currentUser.setBirthday(user.getBirthday());
+        if (!user.getStatus().isEmpty())
+            currentUser.setStatus(user.getStatus());
+        if (!user.getDescription().isEmpty())
+            currentUser.setDescription(user.getDescription());
+        if (!user.getInstagramAccount().isEmpty())
+            currentUser.setInstagramAccount(user.getInstagramAccount());
+        if (!user.getTwitterAccount().isEmpty())
+            currentUser.setTwitterAccount(user.getTwitterAccount());
+        if (!user.getPassword().isEmpty())
+            currentUser.setPassword(passwordEncoder.encode(user.getPassword()));
+
+        userRepo.save(currentUser);
+        log.info("try to edit user");
     }
 
     @Override
@@ -74,13 +83,20 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public User findUser(String email) {
-        if (userRepo.existsByEmail(email)) {
-            log.info("Get user with email:" + email);
-            return userRepo.findByEmail(email);
-        } else {
-            log.error("Try to get user with email:" + email);
-            // TODO:: return to ACCOUNT NOT FOUND EXCEPTION
-            return null;
+        User user = null;
+        try {
+            user = userRepo.findByEmail(email);
+            if (Objects.isNull(user)) {
+                log.error("User find like null");
+                throw new AccountNotFoundException("User is null");
+            } else
+                return user;
+        } catch (AccountNotFoundException e) {
+            log.error("User not found!");
+            user.setEmail("USER_NOT_FOUND@example.com");
+            user.setFirstName("USER_NOT_FOUND");
+            user.setLastName("USER_NOT_FOUND");
+            return user;
         }
     }
 

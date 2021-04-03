@@ -28,12 +28,6 @@ public class CustomUserDetails extends User implements UserDetails {
         return rolesList;
     }
 
-
-    @Override
-    public Set<Role> getRole() {
-        return this.user.getRole();
-    }
-
     @Override
     public String getId() {
         return this.user.getId();
