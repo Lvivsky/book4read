@@ -99,22 +99,26 @@
 
                             </div>
 
-                            <c:if test="user.settings.showFollowers">
+                            <c:if test="${user.settings.showFollowers}">
                                 <div class="col-lg-2 col-sm-6 follow-info weather-category">
                                     <ul>
                                         <li class="active">
-                                                ${followingCount} <i class="fa fa-user-o fa-2x"> </i> Followers
+                                            <a href="#" class="wht-color">
+                                                Followers</br><i class="fa fa-user-o fa-2x float-left"></i> ${followingCount}
+                                            </a>
                                         </li>
 
                                     </ul>
                                 </div>
                             </c:if>
 
-                            <c:if test="user.settings.showFollowing">
+                            <c:if test="${user.settings.showFollowing}">
                                 <div class="col-lg-2 col-sm-6 follow-info weather-category">
                                     <ul>
                                         <li class="active">
-                                                ${followingCount} <i class="fa fa-user-o fa-2x"> </i> Following
+                                            <a href="#" class="wht-color">
+                                                Following</br><i class="fa fa-user-o fa-2x float-left"></i> ${followingCount}
+                                            </a>
                                         </li>
 
                                     </ul>
@@ -134,8 +138,8 @@
                             <ul class="nav nav-tabs">
 
                                 <c:if test="${user.authorRole}">
-                                    <li class="">
-                                        <a data-toggle="tab" href="#is-author">
+                                    <li class="active">
+                                        <a data-toggle="tab" href="#author">
                                             <i class="icon-user"></i>Author bio
                                         </a>
                                     </li>
@@ -179,10 +183,10 @@
                             <div class="tab-content">
 
                                 <!-- is author -->
-                                <c:if test="user.authorRole">
-                                    <div id="is-author" class="tab-pane active">
+                                <c:if test="${user.authorRole}">
+                                    <div id="author" class="tab-pane active">
                                         <section class="panel">
-                                            <c:if test="${empty user.description}">
+                                            <c:if test="${!empty user.description}">
                                                 <div class="bio-graph-heading">
                                                         ${user.description}
                                                 </div>

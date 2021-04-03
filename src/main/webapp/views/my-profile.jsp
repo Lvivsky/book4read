@@ -91,33 +91,30 @@
                                     <span><i class="icon_calendar"></i>${user.birthday}</span>
                                 </h6>
                             </div>
-                            <div class="col-lg-2 col-sm-6 follow-info weather-category">
-                                <ul>
-                                    <li class="active">
 
-                                        <i class="fa fa-comments fa-2x"> </i><br> Contrary to popular belief, Lorem Ipsum is not simply
-                                    </li>
+                            <c:if test="${user.settings.showFollowers}">
+                                <div class="col-lg-2 col-sm-6 follow-info weather-category">
+                                    <ul>
+                                        <li class="active">
+                                            <a href="#" class="wht-color">
+                                                Followers</br><i class="fa fa-user-o fa-2x float-left"></i> ${followingCount}
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </c:if>
 
-                                </ul>
-                            </div>
-                            <div class="col-lg-2 col-sm-6 follow-info weather-category">
-                                <ul>
-                                    <li class="active">
-
-                                        <i class="fa fa-bell fa-2x"> </i><br> Contrary to popular belief, Lorem Ipsum is not simply
-                                    </li>
-
-                                </ul>
-                            </div>
-                            <div class="col-lg-2 col-sm-6 follow-info weather-category">
-                                <ul>
-                                    <li class="active">
-
-                                        <i class="fa fa-tachometer fa-2x"> </i><br> Contrary to popular belief, Lorem Ipsum is not simply
-                                    </li>
-
-                                </ul>
-                            </div>
+                            <c:if test="${user.settings.showFollowing}">
+                                <div class="col-lg-2 col-sm-6 follow-info weather-category">
+                                    <ul>
+                                        <li class="active">
+                                            <a href="#" class="wht-color">
+                                                Following</br><i class="fa fa-user-o fa-2x float-left"></i> ${followingCount}
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </c:if>
 
                         </div>
                     </div>
