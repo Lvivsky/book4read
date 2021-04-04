@@ -37,16 +37,50 @@
     <link href="../../resources/css/style-responsive.css" rel="stylesheet" />
     <link href="../../resources/css/xcharts.min.css" rel=" stylesheet">
     <link href="../../resources/css/jquery-ui-1.10.4.min.css" rel="stylesheet">
-
 </head>
 
 <body>
-
 <section id="container" class="">
     <c:import url="../parts/header.jsp"/>
-    <c:import url="../parts/sidebar.jsp"/>
-
-    <h1>Admin users page</h1>
+    <c:import url="admin-sidebar.jsp"/>
+    <section id="main-content">
+        <section class="wrapper">
+            <div class="row">
+                <div class="col-lg-12">
+                    <section class="panel">
+                        <table class="table table-striped table-advance table-hover">
+                            <tbody>
+                            <tr>
+                                <th><i class="icon_profile"></i> Full Name</th>
+                                <th><i class="icon_calendar"></i> Rg Date</th>
+                                <th><i class="icon_mail_alt"></i> Email</th>
+                                <th><i class="icon_pin_alt"></i> Role</th>
+                                <th><i class="icon_mobile"></i> Blocked</th>
+                                <th><i class="icon_cogs"></i> Action</th>
+                            </tr>
+                            <c:forEach items="${user}" var="u">
+                                <tr>
+                                    <td>${u.firstName} ${u.lastName}</td>
+                                    <td>${u.registrationTime}</td>
+                                    <td>${u.email}</td>
+                                    <td>${u.role}</td>
+                                    <td>${u.blocked}</td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <a class="btn btn-primary" href="#"><i class="icon_plus_alt2"></i></a>
+                                            <a class="btn btn-success" href="#"><i class="icon_check_alt2"></i></a>
+                                            <a class="btn btn-danger" href="#"><i class="icon_close_alt2"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                    </section>
+                </div>
+            </div>
+        </section>
+    </section>
 
 </section>
 

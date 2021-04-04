@@ -31,7 +31,8 @@ public class User {
     public User() {
         this.authorRole = false;
         this.blocked = false;
-        this.registrationTime = new Date(System.currentTimeMillis());
+//        this.registrationTime = new Date(System.currentTimeMillis());
+        this.registrationTime = LocalDate.now();
         this.settings = new Settings();
 
         Set<Role> roles = new HashSet<>();
@@ -72,9 +73,9 @@ public class User {
     @Column(name = "phone_number")
     private String phone;
 
-
     @Column(name = "registration_time", nullable = false)
-    private Date registrationTime;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private LocalDate registrationTime;
 
     @Column(name = "birthday", nullable = false)
     @DateTimeFormat(pattern = "yyyy-MM-dd")

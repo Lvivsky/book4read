@@ -37,16 +37,19 @@
     <link href="../../resources/css/style-responsive.css" rel="stylesheet" />
     <link href="../../resources/css/xcharts.min.css" rel=" stylesheet">
     <link href="../../resources/css/jquery-ui-1.10.4.min.css" rel="stylesheet">
-
 </head>
-
 <body>
-
 <section id="container" class="">
     <c:import url="../parts/header.jsp"/>
-    <c:import url="../parts/sidebar.jsp"/>
+    <c:import url="admin-sidebar.jsp"/>
+    <section id="main-content">
+        <section class="wrapper">
 
-    <h1>Admin page</h1>
+            <h1>Admin page</h1>
+
+        </section>
+    </section>
+
 
 </section>
 

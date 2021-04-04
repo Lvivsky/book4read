@@ -4,11 +4,26 @@
         <!-- sidebar menu start-->
         <ul class="sidebar-menu">
             <li class="active">
-                <a class="" href="index.html">
+                <a class="" href="/">
                     <i class="icon_house_alt"></i>
-                    <span>Dashboard</span>
+                    <span>Home</span>
                 </a>
             </li>
+
+            <li class="active">
+                <a class="" href="/admin/users">
+                    <i class="icon_house_alt"></i>
+                    <span>Users</span>
+                </a>
+            </li>
+
+            <li class="active">
+                <a class="" href="#">
+                    <i class="icon_house_alt"></i>
+                    <span>--------------</span>
+                </a>
+            </li>
+
             <li class="sub-menu">
                 <a href="javascript:;" class="">
                     <i class="icon_document_alt"></i>
