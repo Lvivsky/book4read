@@ -87,34 +87,28 @@
                                 <p><i class="fa fa-mail-forward"><a href="mailto:${user.email}">${user.email}</a></i></p>
 
                                 <h6>
-                                    <span><i class="icon_clock_alt"></i>11:05 AM</span>
                                     <span><i class="icon_calendar"></i>${user.birthday}</span>
                                 </h6>
                             </div>
 
-                            <c:if test="${user.settings.showFollowers}">
-                                <div class="col-lg-2 col-sm-6 follow-info weather-category">
-                                    <ul>
-                                        <li class="active">
-                                            <a href="#" class="wht-color">
-                                                Followers</br><i class="fa fa-user-o fa-2x float-left"></i> ${followingCount}
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </c:if>
-
-                            <c:if test="${user.settings.showFollowing}">
-                                <div class="col-lg-2 col-sm-6 follow-info weather-category">
-                                    <ul>
-                                        <li class="active">
-                                            <a href="#" class="wht-color">
-                                                Following</br><i class="fa fa-user-o fa-2x float-left"></i> ${followingCount}
-                                            </a>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </c:if>
+                            <div class="col-lg-2 col-sm-6 follow-info weather-category">
+                                <ul>
+                                    <li class="active">
+                                        <a href="#" class="wht-color">
+                                            Followers</br><i class="fa fa-user-o fa-2x float-left"></i> ${followingCount}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="col-lg-2 col-sm-6 follow-info weather-category">
+                                <ul>
+                                    <li class="active">
+                                        <a href="#" class="wht-color">
+                                            Following</br><i class="fa fa-user-o fa-2x float-left"></i> ${followingCount}
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
 
                         </div>
                     </div>

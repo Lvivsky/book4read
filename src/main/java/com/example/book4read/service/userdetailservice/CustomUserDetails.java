@@ -11,6 +11,7 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import javax.validation.constraints.Size;
 import java.util.*;
 
 @Log4j
@@ -23,9 +24,11 @@ public class CustomUserDetails extends User implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        List<GrantedAuthority> rolesList = new ArrayList<>();
-        user.getRole().forEach(role -> rolesList.add(new SimpleGrantedAuthority(role.name())));
-        return rolesList;
+        Set<Role> roles = user.getRole();
+        List<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        roles.forEach(role -> authorities.add(new SimpleGrantedAuthority(role.name())));
+
+        return authorities;
     }
 
     @Override
@@ -38,9 +41,26 @@ public class CustomUserDetails extends User implements UserDetails {
         return this.user.getEmail();
     }
 
+
+
     @Override
     public String getPassword() {
         return this.user.getPassword();
+    }
+
+    @Override
+    public @Size(min = 3, max = 24) String getFirstName() {
+        return this.user.getFirstName();
+    }
+
+    @Override
+    public @Size(min = 3, max = 24) String getLastName() {
+        return super.getLastName();
+    }
+
+    @Override
+    public Set<Role> getRole() {
+        return this.user.getRole();
     }
 
     @Override
@@ -50,8 +70,7 @@ public class CustomUserDetails extends User implements UserDetails {
 
     @Override
     public boolean isAccountNonLocked() {
-        // TODO:: pin on user
-        return true;
+        return !user.isBlocked();
     }
 
     @Override

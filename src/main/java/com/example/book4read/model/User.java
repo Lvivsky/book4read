@@ -36,8 +36,8 @@ public class User {
 
         Set<Role> roles = new HashSet<>();
         roles.add(Role.USER);
-        roles.add(Role.ADMIN);
-        roles.add(Role.SUPER_ADMIN);
+//        roles.add(Role.ADMIN);
+//        roles.add(Role.SUPER_ADMIN);
         this.role = roles;
 
     }

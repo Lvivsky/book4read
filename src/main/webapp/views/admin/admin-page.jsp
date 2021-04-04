@@ -46,7 +46,7 @@
     <c:import url="../parts/header.jsp"/>
     <c:import url="../parts/sidebar.jsp"/>
 
-
+    <h1>Admin page</h1>
 
 </section>
 

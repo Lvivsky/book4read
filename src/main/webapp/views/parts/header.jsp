@@ -1,7 +1,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<%@ taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="security" uri="http://www.springframework.org/security/tags" %>
 
 <header class="header dark-bg">
     <div class="toggle-nav">
@@ -23,11 +23,20 @@
         </ul>
         <!--  search form end -->
     </div>
-    <c:choose>
-        <c:when test="${!empty pageContext.request.userPrincipal.name}">
+
+    <security:authorize access="isAuthenticated()">
             <div class="top-nav notification-row">
 
                 <ul class="nav pull-right top-menu">
+
+                    <security:authorize access="hasAuthority('ADMIN')">
+                        <li id="admin_panel" class="">
+                            <a class="" href="/admin">
+                                Admin
+                            </a>
+                        </li>
+                    </security:authorize>
+
                     <li id="task_notificatoin_bar" class="dropdown">
                         <a data-toggle="dropdown" class="dropdown-toggle" href="#">
                             <i class="icon-task-l"></i>
@@ -141,41 +150,6 @@
                                 </a>
                             </li>
 
-                            <li>
-                                <a href="#">
-                                    <span class="photo"><img alt="avatar" src="../../resources/img/avatar-mini2.jpg"></span>
-                                    <span class="subject">
-                                    <span class="from">Bob   Mckenzie</span>
-                                    <span class="time">5 mins</span>
-                                    </span>
-                                    <span class="message"> Hi, What is next project plan?</span>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="#">
-                                    <span class="photo"><img alt="avatar" src="../../resources/img/avatar-mini3.jpg"></span>
-                                    <span class="subject">
-                                    <span class="from">Phillip   Park</span>
-                                    <span class="time">2 hrs</span>
-                                    </span>
-                                    <span class="message">
-                                        I am like to buy this Admin Template.
-                                    </span>
-                                </a>
-                            </li>
-
-                            <li>
-                                <a href="#">
-                                    <span class="photo"><img alt="avatar" src="../../resources/img/avatar-mini4.jpg"></span>
-                                    <span class="subject">
-                                    <span class="from">Ray   Munoz</span>
-                                    <span class="time">1 day</span>
-                                    </span>
-                                    <span class="message">
-                                        Icon fonts are great.
-                                    </span>
-                                </a>
                             </li>
                             <li>
                                 <a href="#">See all messages</a>
@@ -237,7 +211,9 @@
                             <span class="profile-ava">
                                 <img alt="" src="../../resources/img/avatar1_small.jpg">
                             </span>
-                            <span class="username">${pageContext.request.userPrincipal.name}</span>
+                            <span class="username">
+                                <security:authentication property="principal.firstName" />
+                            </span>
                             <b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu extended logout">
@@ -256,11 +232,11 @@
                     </li>
                 </ul>
             </div>
-        </c:when>
-        <c:when test="${empty pageContext.request.userPrincipal.name}">
-                <a href="/login" class="logo" style="float: right">Log<span class="lite">in</span></a>
-        </c:when>
-    </c:choose>
+    </security:authorize>
+    <security:authorize access="isAnonymous()">
+        <a href="/login" class="logo" style="float: right">Log<span class="lite">in</span></a>
+    </security:authorize>
+
 
 </header>
 <!--header end-->

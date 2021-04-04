@@ -34,6 +34,10 @@ public class UserController {
         model.addAttribute("user", user);
         model.addAttribute("newUserData", new User());
         model.addAttribute("settings", user.getSettings());
+
+        model.addAttribute("followersCount", 30);
+        model.addAttribute("followingCount", 30);
+
         return "my-profile";
     }
 

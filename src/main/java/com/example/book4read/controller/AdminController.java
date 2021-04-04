@@ -17,21 +17,9 @@ public class AdminController {
         this.userService = userService;
     }
 
-
-
-
-
-
-
-
     @GetMapping("/admin")
     public String admin() {
-        return "admin/admin";
-    }
-
-    @GetMapping("/admin/statistic")
-    public String adminStatistic() {
-        return "admin/admin-statistic";
+        return "admin/admin-page";
     }
 
     @GetMapping("/admin/users")
